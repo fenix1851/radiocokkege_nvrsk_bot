@@ -5,17 +5,18 @@ async function main(){
     const html = await fsp.readFile('./src/data/shedule.html')
     const $ = cherio.load(html)
     const tables = $('table[class=MsoNormalTable]')
-    console.log(tables.length)
+    console.log(tables)
     const groups = {}
-    for(let table in tables){
-        table = cherio.load(table)
-        const firstRow = cherio.load(table('tr')[0])
-        const groupsColumns = firstRow('td')
-        for(let column in groupsColumns){
-            column = cherio.load(column)
-            groups[column.text()] = {}
-        }
-    }
+    // for(let table in tables){
+    //     table = $(table)
+    //     const firstRow = table[0]
+    //     console.log(firstRow)
+    //     const groupsColumns = firstRow('td')
+    //     for(let column in groupsColumns){
+    //         column = cherio.load(column)
+    //         groups[column.text()] = {}
+    //     }
+    // }
     console.log(groups)
 }
 
