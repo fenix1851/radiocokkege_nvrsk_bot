@@ -5,7 +5,7 @@ async function main(){
     const html = await fsp.readFile('./src/data/shedule.html')
     const $ = cherio.load(html)
     const tables = $('table[class=MsoNormalTable]')
-    console.log(tables)
+    console.log(tables.length)
 }
 
 main()
