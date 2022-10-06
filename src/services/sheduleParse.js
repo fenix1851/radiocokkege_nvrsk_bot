@@ -7,3 +7,5 @@ async function main(){
     const tables = $('table[class=MsoNormalTable]')
     console.log(tables)
 }
+
+main()
