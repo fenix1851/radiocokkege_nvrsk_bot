@@ -7,7 +7,7 @@ async function main(){
     const tables = $('table[class=MsoNormalTable]')
     table = $(tables[0])
     tds = table.children('td')
-    console.log(tds[2])
+    console.log(tds)
     const groups = {}
     // for(let table in tables){
     //     table = $(table)
