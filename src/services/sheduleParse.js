@@ -7,14 +7,13 @@ async function main(){
     const tables = $('table[class=MsoNormalTable]')
     console.log(tables.length)
     const groups = {}
-    tables.forEach(table => {
+    for(let table in tables){
         const firstRow = table('tr')[0]
         const groupsColumns = firstRow('td')
-        groupsColumns.forEach(column => {
+        for(let column in groupsColumns){
             groups[column.text()] = {}
-        })
-        
-    });
+        }
+    }
     console.log(groups)
 }
 
