@@ -6,13 +6,12 @@ async function main(){
     const $ = cherio.load(html)
     const tables = $('table[class=MsoNormalTable]')
     table = $(tables[0])
-    tds = $('td')
+    tds = table.children('td')
     console.log(tds[2])
     const groups = {}
     // for(let table in tables){
     //     table = $(table)
-    //     const firstRow = table[0]
-    //     console.log(firstRow)
+    //     firstRow = 
     //     const groupsColumns = firstRow('td')
     //     for(let column in groupsColumns){
     //         column = cherio.load(column)
