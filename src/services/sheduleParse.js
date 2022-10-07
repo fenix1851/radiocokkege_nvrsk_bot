@@ -7,7 +7,7 @@ async function main(){
     const tables = $('table[class=MsoNormalTable]')
     tables.each((idx,table)=>{
         const tds = $(table).find('td')
-        console.log(td.text())
+        console.log(tds)
     })
     console.log(groups)
 }
