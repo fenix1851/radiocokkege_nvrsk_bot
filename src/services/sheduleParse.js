@@ -6,7 +6,9 @@ async function main(){
     const $ = cherio.load(html)
     const tables = $('table[class=MsoNormalTable]')
     tables.each((idx,table)=>{
-        const tds = $(table).find('td')
+        const trs = $(table).find('tr')
+        const groupsFromTable = $(tr[0])
+        const tds = groupsFromTable.find('td')
         tds.each((idx,td)=>{
             console.log($(td).text())
         })
