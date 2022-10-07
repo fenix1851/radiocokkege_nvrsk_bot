@@ -5,12 +5,16 @@ async function main(){
     const html = await fsp.readFile('./src/data/shedule.html')
     const $ = cherio.load(html)
     const tables = $('table[class=MsoNormalTable]')
-    tables.each((idx,table)=>{
+    const groups = {}
+    tables.each((tableIdx,table)=>{
         const trs = $(table).find('tr')
         const groupsFromTable = $(trs[0])
         const tds = groupsFromTable.find('td')
-        tds.each((idx,td)=>{
-            console.log($(td).text())
+        tds.each((tdIdx,td)=>{
+            groups[$(td).text()] = {
+                tableIndex: tableIdx,
+                tdIdx: tdIdx
+            }
         })
     })
     console.log(groups)
