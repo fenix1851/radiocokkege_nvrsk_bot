@@ -1,3 +1,3 @@
-const parser = require('./services/sheduleParser.js')
+const parser = require('./src/services/sheduleParser.js')
 
 parser.main()
