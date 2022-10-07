@@ -8,7 +8,7 @@ async function main(){
     tables.each((idx,table)=>{
         const tds = $(table).find('td')
         tds.each((idx,td)=>{
-            console.log(td.text())
+            console.log($(td).text())
         })
     })
     console.log(groups)
