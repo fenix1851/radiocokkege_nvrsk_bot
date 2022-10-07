@@ -12,11 +12,13 @@ async function main(){
         const tds = groupsFromTable.find('td')
         tds.each((tdIdx,td)=>{
             trs.each((trIndex, tr)=>{
+                let classes = []
                 const collegeClass = $($(tr).find('td')[tdIdx]).text()
+                classes.push(collegeClass)
                 groups[$(td).text()] = {
                     tableIndex: tableIdx,
                     tdIdx: tdIdx,
-                    class: collegeClass
+                    classes: classes
                 }
             })
         })
