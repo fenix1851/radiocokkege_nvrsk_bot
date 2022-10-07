@@ -15,6 +15,7 @@ async function main(){
                 let classes = []
                 const collegeClass = $($(tr).find('td')[tdIdx]).text()
                 classes.push(collegeClass)
+                })
                 groups[$(td).text()] = {
                     tableIndex: tableIdx,
                     tdIdx: tdIdx,
@@ -22,9 +23,9 @@ async function main(){
                 }
             })
         })
-    })
-    console.log(groups)
-}
+        console.log(groups)
+    }
+
 
 main()
 
