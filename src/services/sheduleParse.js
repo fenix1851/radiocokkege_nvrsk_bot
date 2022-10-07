@@ -16,6 +16,7 @@ async function main(){
                 const collegeClass = $($(tr).find('td')[tdIdx]).text()
                 classes[trIndex] = (collegeClass)
             })
+            delete classes[0]
                 groups[$(td).text()] = {
                     tableIndex: tableIdx,
                     tdIdx: tdIdx,
