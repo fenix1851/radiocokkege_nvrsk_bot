@@ -44,7 +44,7 @@ async function main(){
 }
 const updateMongoData = async function(objectToDb){
     const db = (await MongoClient.connect(MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })).db();
-    if(!await db.shedule){
+    if(!await db.shedule.deleteOne()){
         db.createCollection('shedule')
     }
     await db.shedule.deleteOne({name:objectToDb.name})
