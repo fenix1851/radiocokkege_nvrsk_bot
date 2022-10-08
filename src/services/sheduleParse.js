@@ -9,7 +9,7 @@ async function main(){
     const $ = cherio.load(html)
     const tables = $('table[class=MsoNormalTable]')
     const groups = {}
-    console.log(tables)
+    console.log(tables.length)
     tables.each((tableIdx,table)=>{
         const trs = $(table).find('tr')
         const groupsFromTable = $(trs[0])
