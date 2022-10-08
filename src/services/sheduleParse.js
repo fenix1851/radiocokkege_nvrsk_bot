@@ -5,8 +5,9 @@ const axios = require('axios')
 async function main(){
     // const html = await fsp.readFile('./src/data/shedule.html')
     const html = await axios.get('https://www.novkrp.ru/raspisanie.htm')
+    const data = html['data']
     
-    console.log(html)
+    console.log(data)
     const $ = cherio.load(html)
     const tables = $('table[class=MsoNormalTable]')
     const groups = {}
