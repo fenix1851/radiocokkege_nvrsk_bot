@@ -31,6 +31,7 @@ async function main(){
             })
         })
         console.log(groups)
+        console.log(groups['4-М-3'])
     }
 
 
