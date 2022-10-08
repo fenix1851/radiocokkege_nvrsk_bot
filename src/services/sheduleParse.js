@@ -1,17 +1,27 @@
+require('dotenv').config()
+
 const cherio = require('cherio');
 const fsp = require('fs').promises
 const axios = require('axios')
 
+const { MONGODB_URI, ADMIN_ID } = process.env;
+const { MongoClient } = require('mongodb')
+
 async function main(){
-    // const html = await fsp.readFile('./src/data/shedule.html')
+    // get shedule from site
     const responce = await axios.get('https://www.novkrp.ru/raspisanie.htm')
     const html = responce['data']
-    
-    // console.log(data)+
+
+    // connect ro database
+    const db = (await MongoClient.connect(MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })).db();
+
+    // load html to parser
     const $ = cherio.load(html)
+
+    // get tables
     const tables = $('table[class=MsoNormalTable]')
     const groups = {}
-    console.log(tables.length)
+    // iterate over tables to get all groups data
     tables.each((tableIdx,table)=>{
         const trs = $(table).find('tr')
         const groupsFromTable = $(trs[0])
@@ -23,14 +33,18 @@ async function main(){
                 classes[trIndex] = (collegeClass)
             })
             delete classes[0]
-                groups[$(td).text().split('\n')[1].slice(2)] = {
+                name = $(td).text().split('\n')[1].slice(2)
+                objectToDb = {
+                    name: name,
                     tableIndex: tableIdx,
                     tdIdx: tdIdx,
                     classes: classes
                 }
+                await db.shedule.deleteOne({name:name})
+                await db.shedule.inserOne(objectToDb)
             })
         })
-    console.log(groups['4-М-3'])
+    
 }
 
 
