@@ -12,9 +12,6 @@ async function main(){
     const responce = await axios.get('https://www.novkrp.ru/raspisanie.htm')
     const html = responce['data']
 
-    // connect ro database
-    const db = (await MongoClient.connect(MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })).db();
-
     // load html to parser
     const $ = cherio.load(html)
 
@@ -40,13 +37,16 @@ async function main(){
                     tdIdx: tdIdx,
                     classes: classes
                 }
-                await db.shedule.deleteOne({name:name})
-                await db.shedule.inserOne(objectToDb)
+                updateMongoData(objectToDb)
             })
         })
     
 }
-
+const updateMongoData = async function(objectToDb){
+    const db = (await MongoClient.connect(MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })).db();
+    await db.shedule.deleteOne({name:objectToDb.name})
+    await db.shedule.inserOne(objectToDb)
+}
 
 main()
 
