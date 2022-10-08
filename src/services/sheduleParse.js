@@ -23,7 +23,7 @@ async function main(){
                 classes[trIndex] = (collegeClass)
             })
             delete classes[0]
-                groups[$(td).text()] = {
+                groups[$(td).text().split('\n')[1]] = {
                     tableIndex: tableIdx,
                     tdIdx: tdIdx,
                     classes: classes
