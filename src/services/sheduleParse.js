@@ -48,7 +48,7 @@ const updateMongoData = async function(objectToDb){
     //     db.createCollection('shedule')
     // }
     await db.collection('shedule').deleteOne({name:objectToDb.name})
-    await db.collection('shedule').inserOne(objectToDb)
+    await db.collection('shedule').insertOne(objectToDb)
 }
 
 main()
