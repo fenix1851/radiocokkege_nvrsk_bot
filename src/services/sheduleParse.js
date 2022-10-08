@@ -7,6 +7,7 @@ async function main(){
     const html = await axios.get('https://www.novkrp.ru/raspisanie.htm')
     // console.log(htmlRaspisanie)
     const $ = cherio.load(html)
+    console.log($)
     const tables = $('table[class=MsoNormalTable]')
     const groups = {}
     tables.each((tableIdx,table)=>{
