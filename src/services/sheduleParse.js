@@ -6,7 +6,7 @@ async function main(){
     // const html = await fsp.readFile('./src/data/shedule.html')
     const html = await axios.get('https://www.novkrp.ru/raspisanie.htm').data
     
-    // console.log(html)
+    console.log(html)
     const $ = cherio.load(html)
     const tables = $('table[class=MsoNormalTable]')
     const groups = {}
