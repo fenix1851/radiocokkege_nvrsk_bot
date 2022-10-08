@@ -33,3 +33,58 @@ const settingsScene = require('./scenes/settings')
 const sheduleParse = require('./services/sheduleParse');
 
 setInterval(sheduleParse(), 3600000)
+
+const init = async (bot) =>{
+    const stage = new Stage([
+        groupScene,  
+        sheduleScene,  
+        donateScene, 
+        distributionScene, 
+        settingsScene,
+        
+    ]);
+    const db = (await MongoClient.connect(MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })).db();
+    bot.use(session(db));
+    bot.use(stage.middleware())
+
+    bot.command('start', (ctx)=>{
+        ctx.scene.enter('groupScene')
+    })
+    bot.command('stats', stats())
+
+    bot.command('updateShedule', sheduleParse())
+    bot.command('settings',(ctx)=>ctx.scene.enter('settings'))
+    
+    bot.command('distribution', (ctx, db)=>{
+        console.log(ctx.session.userId)
+        if(ctx.session.userId == ADMIN_ID){
+            ctx.scene.enter('distribution')
+        }
+        else{
+            return ctx.reply('У вас нет прав доступа для пользования этой коммандой!')
+        }
+    })
+    
+    // default scene values
+    bot.action(/[A-z]+$/, (ctx) => {
+        var userAction = ctx.match[0]
+        //console.log(userAction)
+        switch (userAction){
+            case 'changeSettings':
+                ctx.scene.enter('settings')
+                break
+            case 'supportAuthor':
+                ctx.scene.enter('donate')
+                break
+        }
+    })
+    return bot
+}
+
+init(new Telegraf(TEST_TOKEN, { polling: true }), process.env).
+then(async(bot)=> {
+    await bot.launch()
+    console.log(`Launched ${new Date}`)
+})
+
+module.exports = init
