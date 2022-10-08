@@ -3,8 +3,8 @@ const fsp = require('fs').promises
 const axios = require('axios')
 
 async function main(){
-    const html = await fsp.readFile('./src/data/shedule.html')
-    const htmlRaspisanie = await axios.get('https://www.novkrp.ru/raspisanie.htm')
+    // const html = await fsp.readFile('./src/data/shedule.html')
+    const html = await axios.get('https://www.novkrp.ru/raspisanie.htm')
     console.log(htmlRaspisanie)
     const $ = cherio.load(html)
     const tables = $('table[class=MsoNormalTable]')
