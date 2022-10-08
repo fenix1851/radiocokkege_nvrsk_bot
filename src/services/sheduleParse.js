@@ -5,7 +5,7 @@ const axios = require('axios')
 async function main(){
     // const html = await fsp.readFile('./src/data/shedule.html')
     const responce = await axios.get('https://www.novkrp.ru/raspisanie.htm')
-    const html = html['data']
+    const html = responce['data']
     
     // console.log(data)+
     const $ = cherio.load(html)
