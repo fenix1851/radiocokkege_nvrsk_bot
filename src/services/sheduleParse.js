@@ -23,15 +23,15 @@ async function main(){
                 classes[trIndex] = (collegeClass)
             })
             delete classes[0]
-                groups[$(td).text().split('\n')[1]] = {
+                groups[$(td).text().split('\n')[1].slice(1)] = {
                     tableIndex: tableIdx,
                     tdIdx: tdIdx,
                     classes: classes
                 }
             })
         })
-        // console.log(groups)
-        console.log(groups[' 4-М-3'])
+        console.log(groups)
+        // console.log(groups[' 4-М-3'])
     }
 
 
