@@ -38,16 +38,16 @@ const init = async (bot) =>{
     const stage = new Stage([
         groupScene,  
         sheduleScene,  
-        donateScene, 
+        // donateScene, 
         distributionScene, 
-        settingsScene,
-        
+        // settingsScene,
     ]);
     const db = (await MongoClient.connect(MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })).db();
     bot.use(session(db));
     bot.use(stage.middleware())
 
     bot.command('start', (ctx)=>{
+        ctx.session.userId = ctx.from.id
         ctx.scene.enter('groupScene')
     })
     bot.command('stats', stats())
