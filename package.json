@@ -15,5 +15,12 @@
   "bugs": {
     "url": "https://github.com/fenix1851/radiocokkege_nvrsk_bot/issues"
   },
-  "homepage": "https://github.com/fenix1851/radiocokkege_nvrsk_bot#readme"
+  "homepage": "https://github.com/fenix1851/radiocokkege_nvrsk_bot#readme",
+  "dependencies": {
+    "axios": "^1.1.2",
+    "cherio": "^1.0.0-rc.2",
+    "dotenv": "^16.0.3",
+    "telegraf": "^4.10.0",
+    "telegraf-session-mongodb": "^2.0.2"
+  }
 }
